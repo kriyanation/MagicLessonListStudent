@@ -11,7 +11,7 @@ class MagicLessonList(tk.Frame):
         s.map('TScrollbar', background=[('active', '!disabled', 'gray16'), ('pressed', "snow")],
               foreground=[('pressed', "snow"), ('active', "gray16")])
         self.configure(background='gray25')
-        self.l_canvas = tk.Canvas(self, background='gray25')
+        self.l_canvas = tk.Canvas(self, background='gray25',highlightthickness=0)
         self.l_canvas.grid(row=0, column=0, columnspan=5)
         self.lesson_frame = tk.Frame(self.l_canvas, width=770,
                                     height=300,
@@ -37,34 +37,36 @@ class MagicLessonList(tk.Frame):
         self.headersteps_numberlabel = ttk.Label(self.lesson_frame, text="Skill Steps", font=('TkDefaultFont', 16),
                                           background='gray25', foreground='snow')
 
-        self.headerlesson_id_label.grid(row=0, column=0, padx=50, pady=10)
-        self.headerlessonlabel.grid(row=0, column=1, padx=50, pady=10)
-        self.headerfactlabel.grid(row=0, column=2,padx=50, pady=10)
-        self.headerstepslabel.grid(row=0, column=3,padx=50, pady=10)
-        self.headersteps_numberlabel.grid(row=0, column=4, padx=50, pady=10)
+        self.headerlesson_id_label.grid(row=0, column=0,padx=20, pady=10,sticky=tk.W)
+        self.headerlessonlabel.grid(row=0, column=1 ,padx=20,pady=10,sticky=tk.W)
+        self.headerfactlabel.grid(row=0, column=2,padx=20,pady=10,sticky=tk.W)
+        self.headerstepslabel.grid(row=0, column=3, padx=20,pady=10,sticky=tk.W)
+        self.headersteps_numberlabel.grid(row=0, column=4,padx=20, pady=10,sticky=tk.W)
 
         self.lesson_list = data_capture.get_Lessons()
         row_index=1
         for element in self.lesson_list:
+
+            bgcolor = "gray25"
             self.dataidlabel = ttk.Label(self.lesson_frame, text=element[0], font=('TkDefaultFont', 12),
-                                           foreground='aquamarine', wraplength=200, background='gray25')
+                                           foreground='aquamarine', wraplength=200, background=bgcolor)
             self.datanamelabel = ttk.Label(self.lesson_frame, text=element[1], font=('TkDefaultFont', 12),
-                                           foreground='aquamarine', wraplength=200, background='gray25')
+                                           foreground='aquamarine', wraplength=200, background=bgcolor)
             self.datafactlabel = ttk.Label(self.lesson_frame, text=element[2]+'\n'+element[3]+'\n'+element[4], font=('TkDefaultFont', 12),
-                                         foreground='aquamarine', wraplength=300, background='gray25')
+                                         foreground='aquamarine', wraplength=300, background=bgcolor)
             self.datasteplabel = ttk.Label(self.lesson_frame,
                                            text=element[5],
                                            font=('TkDefaultFont', 12),
-                                           foreground='aquamarine', wraplength=200, background='gray25')
+                                           foreground='aquamarine', wraplength=200, background=bgcolor)
             self.datastepnumbers = ttk.Label(self.lesson_frame,
                                            text=str(element[6]),
                                            font=('TkDefaultFont', 12),
-                                           foreground='aquamarine', wraplength=200, background='gray25')
-            self.dataidlabel.grid(row=row_index,column=0)
-            self.datanamelabel.grid(row=row_index, column=1)
-            self.datafactlabel.grid(row=row_index, column=2)
-            self.datasteplabel.grid(row=row_index, column=3)
-            self.datastepnumbers.grid(row=row_index, column=4)
+                                           foreground='aquamarine', wraplength=200, background=bgcolor)
+            self.dataidlabel.grid(row=row_index,column=0,padx=20,sticky=tk.W)
+            self.datanamelabel.grid(row=row_index, column=1,padx=20,sticky=tk.W)
+            self.datafactlabel.grid(row=row_index, column=2,padx=20,sticky=tk.W)
+            self.datasteplabel.grid(row=row_index, column=3,padx=20,sticky=tk.W)
+            self.datastepnumbers.grid(row=row_index, column=4,padx=20,sticky=tk.W)
             row_index += 1
 
     def l_function(self,event):
