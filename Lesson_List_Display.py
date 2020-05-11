@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
-import data_capture
+import data_capture_lessons
 
 
-class MagicLessonList(tk.Frame):
+class MagicLessonList(tk.Toplevel):
     def __init__(self,parent,*args, **kwargs):
         super().__init__(parent,*args, **kwargs)
         s = ttk.Style(self)
@@ -43,7 +43,7 @@ class MagicLessonList(tk.Frame):
         self.headerstepslabel.grid(row=0, column=3, padx=20,pady=10,sticky=tk.W)
         self.headersteps_numberlabel.grid(row=0, column=4,padx=20, pady=10,sticky=tk.W)
 
-        self.lesson_list = data_capture.get_Lessons()
+        self.lesson_list = data_capture_lessons.get_Lessons()
         row_index=1
         for element in self.lesson_list:
 
@@ -74,13 +74,13 @@ class MagicLessonList(tk.Frame):
 
 
 
-if __name__== "__main__":
-    dashboard_app = tk.Tk()
-    dashboard_app.configure(background="gray25")
-    dashboard_app.title("Learning Room Lesson List")
-    dashboard_app.geometry("1200x800")
-    frame = MagicLessonList(dashboard_app)
-    dashboard_app.rowconfigure(0,weight=1)
-    dashboard_app.columnconfigure(0, weight=1)
-    frame.grid(row=0,column=0)
-    dashboard_app.mainloop()
+# if __name__== "__main__":
+#     dashboard_app = tk.Tk()
+#     dashboard_app.configure(background="gray25")
+#     dashboard_app.title("Learning Room Lesson List")
+#     dashboard_app.geometry("1200x800")
+#     frame = MagicLessonList(dashboard_app)
+#     dashboard_app.rowconfigure(0,weight=1)
+#     dashboard_app.columnconfigure(0, weight=1)
+#     frame.grid(row=0,column=0)
+#     dashboard_app.mainloop()
