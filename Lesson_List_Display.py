@@ -7,9 +7,9 @@ class MagicLessonList(tk.Toplevel):
     def __init__(self,parent,*args, **kwargs):
         super().__init__(parent,*args, **kwargs)
         s = ttk.Style(self)
-        s.configure('TScrollbar', background="gray16", foreground="snow")
-        s.map('TScrollbar', background=[('active', '!disabled', 'gray16'), ('pressed', "snow")],
-              foreground=[('pressed', "snow"), ('active', "gray16")])
+        s.configure('TScrollbar', background="gray27", foreground="white")
+        s.map('TScrollbar', background=[('active', '!disabled', 'gray27'), ('pressed', "white")],
+              foreground=[('pressed', "white"), ('active', "gray27")])
         self.configure(background='gray25')
         self.l_canvas = tk.Canvas(self, background='gray25',highlightthickness=0)
         self.l_canvas.grid(row=0, column=0, columnspan=5)
@@ -23,19 +23,19 @@ class MagicLessonList(tk.Toplevel):
         self.scrollbar.config(command=self.l_canvas.yview)
         self.scrollbar.grid(row=0, column=5, sticky="nsew")
         self.lesson_view_label = ttk.Label(self, text="Lessons View",
-                                      font=("Comic Sans", 14, 'bold'), background="gray16", foreground="snow")
+                                      font=("Comic Sans", 14, 'bold'), background="gray27", foreground="white")
         self.scroll_frame = ttk.Frame(self)
-        self.headerlesson_id_label = ttk.Label(self.lesson_frame, text="ID", font=('TkDefaultFont', 16),
+        self.headerlesson_id_label = ttk.Label(self.lesson_frame, text="ID", font=('helvetica', 16),
                                            background='gray25',
-                                           foreground='snow')
-        self.headerlessonlabel = ttk.Label(self.lesson_frame, text="Lesson Name", font=('TkDefaultFont', 16), background='gray25',
-                                         foreground='snow')
-        self.headerfactlabel = ttk.Label(self.lesson_frame, text="Lesson Terms", font=('TkDefaultFont', 16),
-                                          background='gray25', foreground='snow')
-        self.headerstepslabel = ttk.Label(self.lesson_frame, text="Lesson Skills", font=('TkDefaultFont', 16),
-                                           background='gray25', foreground='snow')
-        self.headersteps_numberlabel = ttk.Label(self.lesson_frame, text="Skill Steps", font=('TkDefaultFont', 16),
-                                          background='gray25', foreground='snow')
+                                           foreground='white')
+        self.headerlessonlabel = ttk.Label(self.lesson_frame, text="Lesson Name", font=('helvetica', 16), background='gray25',
+                                         foreground='white')
+        self.headerfactlabel = ttk.Label(self.lesson_frame, text="Lesson Terms", font=('helvetica', 16),
+                                          background='gray25', foreground='white')
+        self.headerstepslabel = ttk.Label(self.lesson_frame, text="Lesson Skills\n(first step)", font=('helvetica', 16),
+                                           background='gray25', foreground='white')
+        self.headersteps_numberlabel = ttk.Label(self.lesson_frame, text="Skill Steps", font=('helvetica', 16),
+                                          background='gray25', foreground='white')
 
         self.headerlesson_id_label.grid(row=0, column=0,padx=20, pady=10,sticky=tk.W)
         self.headerlessonlabel.grid(row=0, column=1 ,padx=20,pady=10,sticky=tk.W)
@@ -48,29 +48,29 @@ class MagicLessonList(tk.Toplevel):
         for element in self.lesson_list:
 
             bgcolor = "gray25"
-            self.dataidlabel = ttk.Label(self.lesson_frame, text=element[0], font=('TkDefaultFont', 12),
-                                           foreground='aquamarine', wraplength=200, background=bgcolor)
-            self.datanamelabel = ttk.Label(self.lesson_frame, text=element[1], font=('TkDefaultFont', 12),
-                                           foreground='aquamarine', wraplength=200, background=bgcolor)
-            self.datafactlabel = ttk.Label(self.lesson_frame, text=element[2]+'\n'+element[3]+'\n'+element[4], font=('TkDefaultFont', 12),
-                                         foreground='aquamarine', wraplength=300, background=bgcolor)
+            self.dataidlabel = ttk.Label(self.lesson_frame, text=element[0], font=('helvetica', 12),
+                                           foreground='white', wraplength=200, background=bgcolor)
+            self.datanamelabel = ttk.Label(self.lesson_frame, text=element[1], font=('helvetica', 12),
+                                           foreground='white', wraplength=200, background=bgcolor)
+            self.datafactlabel = ttk.Label(self.lesson_frame, text=element[2]+'\n'+element[3]+'\n'+element[4], font=('helvetica', 12),
+                                         foreground='white', wraplength=300, background=bgcolor)
             self.datasteplabel = ttk.Label(self.lesson_frame,
                                            text=element[5],
-                                           font=('TkDefaultFont', 12),
-                                           foreground='aquamarine', wraplength=200, background=bgcolor)
+                                           font=('helvetica', 12),
+                                           foreground='white', wraplength=200, background=bgcolor)
             self.datastepnumbers = ttk.Label(self.lesson_frame,
                                            text=str(element[6]),
-                                           font=('TkDefaultFont', 12),
-                                           foreground='aquamarine', wraplength=200, background=bgcolor)
-            self.dataidlabel.grid(row=row_index,column=0,padx=20,sticky=tk.W)
-            self.datanamelabel.grid(row=row_index, column=1,padx=20,sticky=tk.W)
-            self.datafactlabel.grid(row=row_index, column=2,padx=20,sticky=tk.W)
-            self.datasteplabel.grid(row=row_index, column=3,padx=20,sticky=tk.W)
-            self.datastepnumbers.grid(row=row_index, column=4,padx=20,sticky=tk.W)
+                                           font=('helvetica', 12),
+                                           foreground='white', wraplength=200, background=bgcolor)
+            self.dataidlabel.grid(row=row_index,pady=20,column=0,padx=20,sticky=tk.W)
+            self.datanamelabel.grid(row=row_index,pady=20, column=1,padx=20,sticky=tk.W)
+            self.datafactlabel.grid(row=row_index,pady=20, column=2,padx=20,sticky=tk.W)
+            self.datasteplabel.grid(row=row_index,pady=20, column=3,padx=20,sticky=tk.W)
+            self.datastepnumbers.grid(row=row_index,pady=20, column=4,padx=20,sticky=tk.W)
             row_index += 1
 
     def l_function(self,event):
-       self.l_canvas.configure(scrollregion=self.l_canvas.bbox("all"),width=1080,height=720)
+       self.l_canvas.configure(scrollregion=self.l_canvas.bbox("all"),width=1080,height=820)
 
 
 
