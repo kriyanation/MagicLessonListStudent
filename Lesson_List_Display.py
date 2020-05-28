@@ -27,15 +27,15 @@ class MagicLessonList(tk.Toplevel):
         self.scroll_frame = ttk.Frame(self)
         self.headerlesson_id_label = ttk.Label(self.lesson_frame, text="ID", font=('helvetica', 16),
                                            background='gray25',
-                                           foreground='white')
+                                           foreground='aquamarine')
         self.headerlessonlabel = ttk.Label(self.lesson_frame, text="Lesson Name", font=('helvetica', 16), background='gray25',
-                                         foreground='white')
+                                         foreground='aquamarine')
         self.headerfactlabel = ttk.Label(self.lesson_frame, text="Lesson Terms", font=('helvetica', 16),
-                                          background='gray25', foreground='white')
+                                          background='gray25', foreground='aquamarine')
         self.headerstepslabel = ttk.Label(self.lesson_frame, text="Lesson Skills\n(first step)", font=('helvetica', 16),
-                                           background='gray25', foreground='white')
+                                           background='gray25', foreground='aquamarine')
         self.headersteps_numberlabel = ttk.Label(self.lesson_frame, text="Skill Steps", font=('helvetica', 16),
-                                          background='gray25', foreground='white')
+                                          background='gray25', foreground='aquamarine')
 
         self.headerlesson_id_label.grid(row=0, column=0,padx=20, pady=10,sticky=tk.W)
         self.headerlessonlabel.grid(row=0, column=1 ,padx=20,pady=10,sticky=tk.W)
@@ -70,7 +70,7 @@ class MagicLessonList(tk.Toplevel):
             row_index += 1
 
     def l_function(self,event):
-       self.l_canvas.configure(scrollregion=self.l_canvas.bbox("all"),width=1080,height=820)
+       self.l_canvas.configure(scrollregion=self.l_canvas.bbox("all"),width=1180,height=750)
 
 
 
