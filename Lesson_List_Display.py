@@ -51,8 +51,6 @@ class MagicLessonList(tk.Toplevel):
         self.headerfactlabel.grid(row=0, column=2,padx=20,pady=10,sticky=tk.W)
         self.headerstepslabel.grid(row=0, column=3, padx=20,pady=10,sticky=tk.W)
         self.headersteps_numberlabel.grid(row=0, column=4,padx=20, pady=10,sticky=tk.W)
-        self.headersteps_sharelabel.grid(row=0, column=5, padx=20, pady=10, sticky=tk.W)
-        self.headersteps_accesslabel.grid(row=0, column=6, padx=20, pady=10, sticky=tk.W)
         row_index = 1
         self.share_image = tk.PhotoImage(file="../images/share.png")
 
@@ -76,23 +74,14 @@ class MagicLessonList(tk.Toplevel):
                                            text=str(element[6]),
                                            font=('helvetica', 12),
                                            foreground='white', wraplength=200, background=bgcolor)
-            lesson_id = element[0]
-            self.share_button = ttk.Button(self.lesson_frame, text="", image=self.share_image,
-                                           style="dash.TButton", width=5,
-                                           command=lambda c=lesson_id: self.launch_share(c))
-            text_access = self.get_access_text(lesson_id)
-            self.access_label = ttk.Label(self.lesson_frame,
-                                             text=text_access,
-                                             font=('helvetica', 12),
-                                             foreground='white', wraplength=200, background=bgcolor)
+
+
 
             self.dataidlabel.grid(row=row_index,pady=20,column=0,padx=20,sticky=tk.W)
             self.datanamelabel.grid(row=row_index,pady=20, column=1,padx=20,sticky=tk.W)
             self.datafactlabel.grid(row=row_index,pady=20, column=2,padx=20,sticky=tk.W)
             self.datasteplabel.grid(row=row_index,pady=20, column=3,padx=20,sticky=tk.W)
             self.datastepnumbers.grid(row=row_index,pady=20, column=4,padx=20,sticky=tk.W)
-            self.share_button.grid(row=row_index,pady=20, column=5,padx=20,sticky=tk.W)
-            self.access_label.grid(row=row_index, pady=20, column=6, padx=20, sticky=tk.W)
             row_index += 1
         self.import_button = ttk.Button(self, text="Import a Lesson", width=20,
                    command=self.import_lesson,

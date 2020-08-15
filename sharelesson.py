@@ -162,7 +162,10 @@ def update_lesson_details(json_object):
     step8_image_file = json_object["step8_image"]
     if step8_image_file is not None:
         step8_filename = constructfilename(step8_image_file,"step8")
-
+    json_object["term1_description"] = json_object["term1_description"].replace("~", "\n")
+    json_object["term2_description"] = json_object["term2_description"].replace("~", "\n")
+    json_object["term3_description"] = json_object["term3_description"].replace("~", "\n")
+    json_object["questions"] = json_object["questions"].replace("~", "\n")
     query_parameters = [json_object["title"],title_filename,json_object["title_video"],json_object["title_description"],
                         json_object["term1"],json_object["term1_description"],term1_filename,json_object["term2"],json_object["term2_description"],term2_filename,
                         json_object["term3"],json_object["term3_description"],term3_filename,json_object["number_of_steps"],json_object["step1_description"],step1_filename,json_object["step2_description"],step2_filename,
