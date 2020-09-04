@@ -124,13 +124,22 @@ def import_new_lesson(user,classid,lessonid,lessonwindow):
     headers = {'Content-Type': 'application/json'}
     url = url_root+"lesson/?username=" + user + "&lesson_id=" + lessonid + "&class_id=" + classid
     response_get = requests.get(url, headers=headers)
-    response_object_get = json.loads(response_get.content)
-    if response_get.status_code == 200 and len(response_object_get) > 0:
+
+    if response_get.status_code == 200:
+        response_object_get = json.loads(response_get.content)
         messagebox.showinfo("Lesson Import","Import triggered\n The screen will close and refresh once import is completed",parent=lessonwindow)
-        json_object = response_object_get[0]
-        status = update_lesson_details(json_object)
-        if status == "error":
+        if len(response_object_get) > 0:
+            json_object = response_object_get[0]
+            status = update_lesson_details(json_object)
+        else:
+            messagebox.showinfo("No Lesson","No such lesson exists",parent=lessonwindow)
             return "error"
+        if status == "error":
+            messagebox.showinfo("Lesson Import", "Import could not be completed, Check file permissions and try again",parent=lessonwindow)
+            return "error"
+        else:
+            messagebox.showinfo("Lesson Import", "Import completed",parent=lessonwindow)
+
     else:
         return "error"
 
@@ -177,6 +186,8 @@ def update_lesson_details(json_object):
     step8_image_file = json_object["step8_image"]
     if step8_image_file is not None:
         step8_filename = constructfilename(step8_image_file,"step8")
+    if json_object["title_video"] is None:
+        json_object["title_video"] = ""
     json_object["title_description"] = json_object["title_description"].replace("~", "\n")
     json_object["term1_description"] = json_object["term1_description"].replace("~", "\n")
     json_object["term2_description"] = json_object["term2_description"].replace("~", "\n")
@@ -194,6 +205,7 @@ def update_lesson_details(json_object):
     if not os.path.exists("../Lessons/Lesson"+str(new_id)):
         os.mkdir("../Lessons/Lesson"+str(new_id))
         os.mkdir("../Lessons/Lesson"+str(new_id)+"/images")
+        os.mkdir("../Lessons/Lesson" + str(new_id) + "/saved_boards")
         src_files = os.listdir("tmp")
         for file_name in src_files:
             full_file_name = os.path.join("tmp", file_name)

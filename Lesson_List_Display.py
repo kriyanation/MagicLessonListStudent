@@ -115,7 +115,7 @@ class MagicLessonList(tk.Toplevel):
         lessonid = tk.StringVar()
 
         user_label = tk.Label(self.import_screen, text="Teacher ID", font=("Comic Sans", 12, 'bold'),
-                                  background="gray22", foreground="white")
+                              background="gray22", foreground="white")
         user_label.pack()
         # Set username entry
         # The Entry widget is a standard Tkinter widget used to enter or display a single line of text.
@@ -124,14 +124,14 @@ class MagicLessonList(tk.Toplevel):
 
         # Set password label
         class_label = tk.Label(self.import_screen, text="Class ID", font=("Comic Sans", 12, 'bold'),
-                                  background="gray22", foreground="white")
+                               background="gray22", foreground="white")
         class_label.pack()
 
         # Set password entry
         class_entry = tk.Entry(self.import_screen, textvariable=classid)
         class_entry.pack()
         lesson_label = tk.Label(self.import_screen, text="Lesson ID", font=("Comic Sans", 12, 'bold'),
-                               background="gray22", foreground="white")
+                                background="gray22", foreground="white")
         lesson_label.pack()
 
         # Set password entry
@@ -146,9 +146,10 @@ class MagicLessonList(tk.Toplevel):
         ttk.Button(self.import_screen, text="Start Import", width=10,
                    command=lambda: self.get_lesson(user.get(), classid.get(), lessonid.get()),
                    style="Firebrick.TButton").pack()
-    def get_lesson(self,user,classid,lessonid):
 
-        status = sharelesson.import_new_lesson(user,classid,lessonid,self)
+    def get_lesson(self, user, classid, lessonid):
+
+        status = sharelesson.import_new_lesson(user, classid, lessonid, self)
         if status == 'error':
             self.importstatusvar.set("Access information could be wrong, please try again")
         else:
@@ -156,10 +157,11 @@ class MagicLessonList(tk.Toplevel):
             for widget in self.lesson_frame.winfo_children():
                 widget.destroy()
             self.data_display()
-    def l_function(self,event):
-       self.l_canvas.configure(scrollregion=self.l_canvas.bbox("all"),width=1450,height=750)
 
-    def delete_lesson(self,lesson_id):
+    def l_function(self, event):
+        self.l_canvas.configure(scrollregion=self.l_canvas.bbox("all"), width=1650, height=750)
+
+    def delete_lesson(self, lesson_id):
         try:
             delete_data = data_capture_lessons.delete_lesson(lesson_id)
             if delete_data == 0:
@@ -172,9 +174,6 @@ class MagicLessonList(tk.Toplevel):
         for widget in self.lesson_frame.winfo_children():
             widget.destroy()
         self.data_display()
-
-
-
 
 # if __name__== "__main__":
 #     dashboard_app = tk.Tk()
